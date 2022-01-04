@@ -19,24 +19,24 @@ opers = ['+', '-', '*', 'C', '<-', '=', '/']
 
 # OPERATIONS
 def add(x, y):
-    return int(x) + int(y)
+    return float(x) + float(y)
 
 def subtract(x, y):
-    return int(x) - int(y)
+    return float(x) - float(y)
 
 def multiply(x, y):
-    return int(x) * int(y)
+    return float(x) * float(y)
 
 def divide(x, y):
-    return int(x) / int(y)
+    return float(x) / float(y)
 
 def equals():
     global calc
     global bodmas
-    print('in here :)')
+    # print('in here :)')
 
     for x in bodmas:
-        print('hello')
+        # print('hello')
         i = 0
         while i < len(calc):
             print('hi' + str(len(calc)))
@@ -74,18 +74,26 @@ def btn_clicked(value):
         equals()
     elif value == 'C':
         calc = []
+    elif value == '<-':
+        if len(calc) > 0:
+            if len(calc[-1]) == 1:
+                del(calc[-1])
+            else:
+                temp = calc[-1]
+                temp = temp[:-1]
+                calc[-1] = temp
     else:
         if len(calc) == 0:
-            print('here 1')
+            # print('here 1')
             calc.append(value)
         elif calc[-1] in opers:
-            print('here 2')
+            # print('here 2')
             calc.append(value)
         elif value in opers:
-            print('here 3')
+            # print('here 3')
             calc.append(value)
         else:
-            print('here 4')
+            # print('here 4')
             calc[-1] = calc[-1] + value
 
     data.set(delim.join(calc))
@@ -110,7 +118,7 @@ def addButtons():
     for i in opers:
         def func(x=i):
             return btn_clicked(x)
-        print(i)
+        # print(i)
         if (i == '+'):
             buttonsOp.append(Button(row1, text=i, font = ("Verdana", 22), relief = GROOVE, border=0, command = func))
         elif (i == '-'):
