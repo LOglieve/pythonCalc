@@ -15,7 +15,7 @@ operator = ''
 result = 0
 
 count = [1,2,3,4,5,6,7,8,9,0]
-opers = ['+', '-', '*', 'C', '<-', '=', '/']
+opers = ['+', '-', '*', 'C', '<-', '=', '/', '.']
 
 # OPERATIONS
 def add(x, y):
@@ -82,6 +82,9 @@ def btn_clicked(value):
                 temp = calc[-1]
                 temp = temp[:-1]
                 calc[-1] = temp
+    elif value == '.':
+        if calc[-1] not in opers:
+            calc[-1] = calc[-1] + value
     else:
         if len(calc) == 0:
             # print('here 1')
