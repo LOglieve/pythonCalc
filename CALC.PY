@@ -14,7 +14,7 @@ B = 0
 operator = ''
 result = 0
 
-count = [1,2,3,4,5,6,7,8,9,]
+count = [1,2,3,4,5,6,7,8,9,0]
 opers = ['+', '-', '*', 'C', '<-', '=', '/']
 
 # OPERATIONS
@@ -39,7 +39,7 @@ def equals():
         # print('hello')
         i = 0
         while i < len(calc):
-            print('hi' + str(len(calc)))
+            # print('hi' + str(len(calc)))
             if(calc[i] == x):
                 
                 if(x == '/'):
