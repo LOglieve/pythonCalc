@@ -4,6 +4,8 @@ from tkinter import *
 buttonsInt = []
 buttonsOp = []
 
+bodmas = ['/', '*', '+', '-']
+
 calc = []
 
 A = 0
@@ -13,23 +15,51 @@ operator = ''
 result = 0
 
 count = [1,2,3,4,5,6,7,8,9,]
-opers = ['+', '-', 'X', 'C', '<-', '=', '/']
+opers = ['+', '-', '*', 'C', '<-', '=', '/']
 
 # OPERATIONS
 def add(x, y):
-    return x + y
+    return int(x) + int(y)
 
 def subtract(x, y):
-    return x - y
+    return int(x) - int(y)
 
 def multiply(x, y):
-    return x * y
+    return int(x) * int(y)
 
 def divide(x, y):
-    return x / y
+    return int(x) / int(y)
 
 def equals():
     global calc
+    global bodmas
+    print('in here :)')
+
+    for x in bodmas:
+        print('hello')
+        i = 0
+        while i < len(calc):
+            print('hi' + str(len(calc)))
+            if(calc[i] == x):
+                
+                if(x == '/'):
+                    calc[i-1] = str(divide(calc[i-1], calc[i+1]))
+                    print(calc)
+                elif(x == '*'):
+                      calc[i-1] = str(multiply(calc[i-1], calc[i+1]))
+                      print(calc)
+                elif(x == '+'):
+                      calc[i-1] = str(add(calc[i-1], calc[i+1]))
+                      print(calc)
+                elif(x == '-'):
+                      calc[i-1] = str(subtract(calc[i-1], calc[i+1]))
+                      print(calc)
+                del(calc[i+1])
+                del(calc[i])
+                i = i - 2
+
+            i = i + 1
+                
 
 # Button clicked
 def btn_clicked(value):
@@ -39,17 +69,25 @@ def btn_clicked(value):
     delim = ' '
 
     value = str(value)
-
+    
     if value == '=':
         equals()
+    elif value == 'C':
+        calc = []
     else:
         if len(calc) == 0:
             print('here 1')
             calc.append(value)
         elif calc[-1] in opers:
+            print('here 2')
+            calc.append(value)
+        elif value in opers:
+            print('here 3')
             calc.append(value)
         else:
+            print('here 4')
             calc[-1] = calc[-1] + value
+
     data.set(delim.join(calc))
 
 # create all buttons
@@ -77,7 +115,7 @@ def addButtons():
             buttonsOp.append(Button(row1, text=i, font = ("Verdana", 22), relief = GROOVE, border=0, command = func))
         elif (i == '-'):
             buttonsOp.append(Button(row2, text=i, font = ("Verdana", 22), relief = GROOVE, border=0, command = func))
-        elif (i == 'X'):
+        elif (i == '*'):
             buttonsOp.append(Button(row3, text=i, font = ("Verdana", 22), relief = GROOVE, border=0, command = func))
         else:
             buttonsOp.append(Button(row4, text=i, font = ("Verdana", 22), relief = GROOVE, border=0, command = func))
