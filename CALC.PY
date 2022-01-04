@@ -1,31 +1,58 @@
 from tkinter import *
 
-calc = ""
+# Buttons
 buttonsInt = []
 buttonsOp = []
+
+calc = []
+
 A = 0
+B = 0
+
 operator = ''
 result = 0
 
 count = [1,2,3,4,5,6,7,8,9,]
 opers = ['+', '-', 'X', 'C', '<-', '=', '/']
 
+# OPERATIONS
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    return x / y
+
+def equals():
+    global calc
+
+# Button clicked
 def btn_clicked(value):
     global calc
     global A
     global opers
+    delim = ' '
+
+    value = str(value)
 
     if value == '=':
-        if(operator == '+'):
-            #temp
-            result = A
-    if value in opers:
-        A = int(calc)
-        calc = calc + ' ' + value + ' '
+        equals()
     else:
-        calc = calc + str(value)
-    data.set(calc)
+        if len(calc) == 0:
+            print('here 1')
+            calc.append(value)
+        elif calc[-1] in opers:
+            calc.append(value)
+        else:
+            calc[-1] = calc[-1] + value
+    data.set(delim.join(calc))
 
+# create all buttons
 def addButtons():
     global count
     global opers
